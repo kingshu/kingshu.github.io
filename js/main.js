@@ -22,8 +22,7 @@ function processImage() {
 
     var q = new RgbQuant(opts);
 
-    var img = document.querySelector('img');
-    console.log(img);
+    var img = document.querySelector('#preview');
 
     // analyze histograms
     q.sample(img);
