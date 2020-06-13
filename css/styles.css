@@ -1,0 +1,163 @@
+input[type="file"] {
+    width: 1px; height: 1px;
+    position: absolute;
+    top: -10px; left: -10px;
+}
+
+.keepsizelabel {
+	vertical-align: top;
+}
+
+canvas, img {
+	box-shadow: 0 0 30px 0 #3e3e3e;
+}
+
+.upload-form {
+	background-color: rgba(255, 255, 255, 0.9);
+	padding: 20px 0 50px 0;
+	border-radius: 10px;
+	box-shadow: 0px 0px 10px 0px #b7b7b7;
+}
+
+.pallete-cont {
+	margin-top: 5%;
+}
+
+.r-img-cont {
+	margin-top: 5%;
+}
+
+#preview-row {
+	display: none;
+	text-align: center;
+}
+
+#results-row {
+	display: none;
+	padding-top: 2%;
+	text-align: center;
+	margin-bottom: 2%;
+}
+
+#init-row {
+	text-align: center;
+	margin-top: 20%;
+}
+
+#inp-form {
+	margin-top: 20%;
+	text-align: center;
+	background-color: rgba(255, 255, 255, 0.9);
+	padding: 20px 0 50px 0;
+	border-radius: 10px;
+	box-shadow: 0px 0px 10px 0px #b7b7b7;
+	padding: 3% 5% 5% 5%;
+}
+
+.result-step {
+	background-color: rgba(255, 255, 255, 0.6);
+	padding: 20px 0 50px 0;
+	border-radius: 10px;
+	box-shadow: 0px 0px 10px 0px #b7b7b7;
+	padding-left: 6%;
+	padding-right: 6%;
+}
+
+#num-colors {
+	width: 80px;
+	display: inline-block;
+}
+
+.inline-num-input {
+	margin-top: 7%;
+}
+
+body, html, .container-fluid {
+  height: 100%;
+  color: #383838;
+}
+
+h3 {
+	color: #a97322;	
+}
+
+.upload-btn {
+	margin-top: 20px;
+}
+
+#retry-row {
+	text-align: center;
+	display: none;
+	margin: 5% 0;
+    padding: 5% 0;
+    border-top: 2px dotted #c58d38;
+}
+
+.img-box {
+	margin-top: 25px;
+}
+
+#tooltip {
+    display:block;
+    position:fixed;
+    overflow:hidden;
+    width: 240px;
+    height: 350px;
+    background-color: white;
+    padding: 3px 15px;
+    visibility: hidden;
+}
+
+#tooltip.upleft {
+	border-radius: 25px 25px 0 25px;
+	box-shadow: -7px -7px 10px -5px #b7802d;
+}
+
+#tooltip.upright {
+	border-radius: 25px 25px 25px 0;
+	box-shadow: 7px -7px 10px -5px #b7802d;
+}
+
+#tooltip.downleft {
+	border-radius: 25px 0 25px 25px;
+	box-shadow: -7px 7px 10px -5px #b7802d;
+}
+
+#tooltip.downright {
+	border-radius: 0 25px 25px 25px;
+	box-shadow: 7px 7px 10px -5px #b7802d;
+}
+
+.color-container {
+	margin-bottom: 10px;
+}
+
+.colorball {
+	display: inline-block;
+	height: 18px;
+    width: 18px;
+    border-radius: 6px;
+    vertical-align: sub;
+}
+.flossnum {
+	display: inline-block;
+	width: 40px;
+    margin-left: 5px;
+    font-weight: bold;
+}
+.flossname {
+	display: inline-block;
+}
+
+#num-colors {
+	vertical-align: bottom;
+}
+
+.preview-col {
+	margin-top: 5%;
+}
+
+body {
+    background-image: url("img/bg.jpg");
+    background-repeat: repeat;
+}
