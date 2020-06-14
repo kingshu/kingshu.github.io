@@ -181,7 +181,7 @@ goBtn.addEventListener('click', function(event) {
         ldr.style.visibility = "hidden";
         rRow.style.display = "block";
         pRow.style.display = "none";
-    }, 5000);
+    }, 3000);
 });
 
 window.addEventListener('click', function(event) {
