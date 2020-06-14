@@ -27,7 +27,9 @@
       </div>
 
       <div class="row" id="init-row">
-        <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-4 upload-form">
+        <div class="upload-form
+                    col-xs-10 col-xs-offset-1
+                    col-sm-4 col-sm-offset-4">
           <input type="file" id="input">
           <h3>Step 1</h3>
           <h4>Upload your image</h4>
@@ -39,7 +41,9 @@
       </div>
 
       <div class="row" id="preview-row">
-        <div id="inp-form" class="inp-form col-xs-10 col-xs-offset-1 col-md-5">
+        <div id="inp-form" class="preview-col
+                                  col-xs-10 col-xs-offset-1
+                                  col-sm-4 col-sm-offset-0">
           <form class="form-inline">
             <h3>Step 2</h3>
             <h4>How many floss colors do you want to use?</h4>
@@ -56,34 +60,36 @@
           </form>
         </div>
 
-        <div class="col-xs-12 preview-col col-md-5 col-md-offset-1">
+        <div class="preview-col img-cont-generic
+                    col-xs-12
+                    col-sm-7 col-sm-offset-1">
           <h4>Image you uploaded</h4>
-          <img class="img-box" id="preview" width="300">
+          <img class="img-box" id="preview">
         </div>
       </div>
 
       <div id="results-row">
         <div class="row">
-          <div class="result-step col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-4">
+          <div class="result-step col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-4">
             <h3>Step 3</h3>
             <h4>Click on any part of the image or pallete to show the DMC thread colors</h4>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-xs-12 col-md-6 r-img-cont">
-            <h5>Your image with reduced colors</h5>
+          <div class="col-xs-12 col-sm-7 r-img-cont img-cont-generic">
+            <h4>Your image with reduced colors</h4>
             <div class="img-box" id="redu"></div>
           </div>
-          <div class="pallete-cont col-xs-12 col-md-6">
-            <h5>All colors used</h5>
+          <div class="pallete-cont col-xs-12 col-sm-4 col-sm-offset-1 img-cont-generic">
+            <h4>All colors used</h4>
             <div class="img-box" id="palt"></div>
           </div>
         </div>
       </div>
 
       <div class="row" id="retry-row">
-        <button id="retry-btn" class=" btn-lg btn-default retry-btn">
+        <button id="retry-btn" class="btn btn-lg btn-default retry-btn">
           <span class="glyphicon glyphicon-repeat"></span>
           Try a new image
         </button>
@@ -92,6 +98,10 @@
       <div id="tooltip">
         <h4 id="closest-title">Closest DMC threads</h4>
         <div id="closestcolors"></div>
+      </div>
+
+      <div id="loader">
+        <img src="css/img/loader.gif" class="loader-img" alt="">
       </div>
 
     </div>

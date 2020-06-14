@@ -32,6 +32,10 @@ canvas, img.img-box {
 	text-align: center;
 }
 
+.preview-col {
+	margin-top: 5%;
+}
+
 .header-img-row {
 	text-align: center;
 	margin-top: 2%;
@@ -43,7 +47,7 @@ canvas, img.img-box {
 
 #results-row {
 	display: none;
-	padding-top: 2%;
+	padding-top: 5%;
 	text-align: center;
 	margin-bottom: 5%;
 }
@@ -54,13 +58,19 @@ canvas, img.img-box {
 }
 
 #inp-form {
-	margin-top: 5%;
 	text-align: center;
 	background-color: rgba(255, 255, 255, 0.9);
 	padding: 20px 0 50px 0;
 	border-radius: 10px;
 	box-shadow: 0px 0px 10px 0px #b7b7b7;
 	padding: 3% 5% 5% 5%;
+}
+
+.img-cont-generic {
+	background-color: white;
+	box-shadow: 0px 0px 10px 0px #b7b7b7;
+	border-radius: 10px;
+	padding: 3% 0 5% 0;
 }
 
 .result-step {
@@ -162,12 +172,20 @@ h3 {
 	vertical-align: bottom;
 }
 
-.preview-col {
-	margin-top: 5%;
-	background-color: white;
-	box-shadow: 0px 0px 10px 0px #b7b7b7;
-	border-radius: 10px;
-	padding: 3%;
+#loader {
+	display:block;
+    position:fixed;
+    overflow:hidden;
+    width: 300px;
+    height: 300px;
+    visibility: hidden;
+    box-shadow: 0 0 0 5000px rgba(0,0,0,0.6);
+    border-radius: 150px;
+}
+
+.loader-img {
+	width: 300px;
+	border-radius: 150px;
 }
 
 body {

@@ -1,6 +1,5 @@
 function processImage() {
     var numColors = document.getElementById('num-colors').value;
-    console.log(numColors);
 
     // options with defaults (not required)
     var opts = {
@@ -30,14 +29,16 @@ function processImage() {
     // build palette
     var pal = q.palette();
     var pcan = drawPixels(pal, 5, 300);
-    console.log(pal);
     var palt = document.querySelector('#palt');
     palt.append(pcan);
 
     // reduce images
     var out = q.reduce(img)
-
-    var ican = drawPixels(out, img.naturalWidth, "300");
+    var imgWidth = 600;
+    if (window.innerWidth < 600) {
+        imgWidth = 300;
+    }
+    var ican = drawPixels(out, img.naturalWidth, imgWidth);
 
     var redu = document.querySelector('#redu');
     redu.append(ican);
@@ -158,7 +159,6 @@ function showColor(canvas, e) {
         colorCont.append(flossNum);
         colorCont.append(flossName);
 
-        console.log(closestColors);
         closestColors.append(colorCont);
     }
 }
@@ -170,11 +170,18 @@ function typeOf(val) {
 var goBtn = document.getElementById('go');
 var pRow = document.getElementById('preview-row');
 var rRow = document.getElementById('results-row');
+var ldr = document.getElementById('loader');
 goBtn.addEventListener('click', function(event) {
     event.preventDefault();
-    rRow.style.display = "block";
+    ldr.style.top = ((window.innerHeight / 2) - 150) + "px";
+    ldr.style.left = ((window.innerWidth / 2) - 150) + "px";
+    ldr.style.visibility = "visible";
     processImage();
-    pRow.style.display = "none";
+    window.setTimeout(function() {
+        ldr.style.visibility = "hidden";
+        rRow.style.display = "block";
+        pRow.style.display = "none";
+    }, 5000);
 });
 
 window.addEventListener('click', function(event) {
@@ -182,9 +189,7 @@ window.addEventListener('click', function(event) {
 });
 
 var desc = document.getElementById("description");
-console.log(desc);
 var descBtn = document.getElementById("description-btn");
-console.log(descBtn);
 descBtn.addEventListener('click', function(event) {
     desc.innerHTML = "This is going to reduce the number of colors in the image to the number you set. So, if you are doing a high-detail technique like thread painting, you probably want to set this number higher, like 50. This will simplify your image to 50 different colors each corresponding to a different color of floss. In contrast, a cross-stitch project might only use 10 different floss colors, so for something like that, you should set this number to 10.";
     event.preventDefault();

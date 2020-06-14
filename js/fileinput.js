@@ -12,23 +12,28 @@ button.addEventListener('click', function(e) {
 
 //display the name of the selected file
 input.addEventListener('change', function(e) {
+    var outputImgWidth = "300";
     if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function(event) {
             var img = new Image();
             img.onload = function() {
-                if (img.naturalWidth>300) {
+                if (img.naturalWidth > 300 && window.innerWidth < 786) {
                     resizeImageToSpecificWidth(img, 300);
+                } else if (img.naturalWidth > 600) {
+                    resizeImageToSpecificWidth(img, 600);
+                    outputImgWidth = "600";
                 } else {
+                    outputImgWidth = "" + img.naturalWidth;
                     outputImg.src = event.target.result;
                 }
+                outputImg.width = outputImgWidth;
             };
             img.src = event.target.result;
         };
         reader.readAsDataURL(input.files[0]);
     }
     
-    outputImg.width = "300";
     outputImg.onload = function() {
         initRow.style.display = "none";
         previewRow.style.display = "block";
