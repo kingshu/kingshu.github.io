@@ -22,8 +22,8 @@
   <body>
     <div class="container">
 
-      <div class="row header-img">
-        <img src="css/img/flossfinder.png" alt="">
+      <div class="row header-img-row">
+        <img class="main-banner" src="css/img/flossfinder.png" alt="">
       </div>
 
       <div class="row" id="init-row">
@@ -39,7 +39,7 @@
       </div>
 
       <div class="row" id="preview-row">
-        <div id="inp-form" class="inp-form col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
+        <div id="inp-form" class="inp-form col-xs-10 col-xs-offset-1 col-md-5">
           <form class="form-inline">
             <h3>Step 2</h3>
             <h4>How many floss colors do you want to use?</h4>
@@ -56,24 +56,29 @@
           </form>
         </div>
 
-        <div class="col-xs-12 preview-col">
+        <div class="col-xs-12 preview-col col-md-5 col-md-offset-1">
           <h4>Image you uploaded</h4>
           <img class="img-box" id="preview" width="300">
         </div>
       </div>
 
-      <div class="row" id="results-row">
-        <div class="result-step col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-4">
-          <h3>Step 3</h3>
-          <h4>Click on any part of the image or pallete to show the DMC thread colors</h4>
+      <div id="results-row">
+        <div class="row">
+          <div class="result-step col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-4">
+            <h3>Step 3</h3>
+            <h4>Click on any part of the image or pallete to show the DMC thread colors</h4>
+          </div>
         </div>
-        <div class="col-xs-12 r-img-cont">
-          <h5>Your image with reduced colors</h5>
-          <div class="img-box" id="redu"></div>
-        </div>
-        <div class="pallete-cont col-xs-12">
-          <h5>All colors used</h5>
-          <div class="img-box" id="palt"></div>
+
+        <div class="row">
+          <div class="col-xs-12 col-md-6 r-img-cont">
+            <h5>Your image with reduced colors</h5>
+            <div class="img-box" id="redu"></div>
+          </div>
+          <div class="pallete-cont col-xs-12 col-md-6">
+            <h5>All colors used</h5>
+            <div class="img-box" id="palt"></div>
+          </div>
         </div>
       </div>
 

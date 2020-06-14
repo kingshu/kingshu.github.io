@@ -9,7 +9,7 @@ input[type="file"] {
 }
 
 canvas, img.img-box {
-	box-shadow: 0 0 30px 0 #3e3e3e;
+	box-shadow: 0 0 10px 0 #797979;
 }
 
 .upload-form {
@@ -32,16 +32,20 @@ canvas, img.img-box {
 	text-align: center;
 }
 
-.header-img {
+.header-img-row {
 	text-align: center;
-	margin-top: 5%;
+	margin-top: 2%;
+}
+
+.main-banner {
+	width: 300px;
 }
 
 #results-row {
 	display: none;
 	padding-top: 2%;
 	text-align: center;
-	margin-bottom: 2%;
+	margin-bottom: 5%;
 }
 
 #init-row {
@@ -160,6 +164,10 @@ h3 {
 
 .preview-col {
 	margin-top: 5%;
+	background-color: white;
+	box-shadow: 0px 0px 10px 0px #b7b7b7;
+	border-radius: 10px;
+	padding: 3%;
 }
 
 body {
