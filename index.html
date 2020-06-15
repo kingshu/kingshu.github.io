@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/tabs.css">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -20,24 +21,33 @@
     <![endif]-->
   </head>
   <body>
-    <div class="container">
-
+    <div class="container main-container">
       <div class="row header-img-row">
         <img class="main-banner" src="css/img/flossfinder.png" alt="">
       </div>
 
-      <div class="row" id="init-row">
-        <div class="upload-form
-                    col-xs-10 col-xs-offset-1
-                    col-sm-4 col-sm-offset-4">
-          <input type="file" id="input">
-          <h3>Step 1</h3>
-          <h4>Upload your image</h4>
-            <button id="upload-btn" class="btn btn-lg btn-default upload-btn">
-              <span class="glyphicon glyphicon-upload"></span> Upload image
-            </button>
-          </form>
+      <div id="init-row">
+        <div class="row">
+          <div class="upload-form
+                      col-xs-10 col-xs-offset-1
+                      col-sm-4 col-sm-offset-4">
+            <input type="file" id="input">
+            <h3>Step 1</h3>
+            <h4>Upload your image</h4>
+              <button id="upload-btn" class="btn btn-lg btn-default upload-btn">
+                  <span class="glyphicon glyphicon-upload"></span> Upload image
+              </button>
+            </form>
+          </div>
         </div>
+
+        <div class="row insp-text-row">
+          <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3 insp-text">
+            <h4>Looking for inspiration? Maybe, start with one of these!</h4>
+          </div>
+        </div>
+
+        <div id="insp-images"></div>
       </div>
 
       <div class="row" id="preview-row">
@@ -53,7 +63,7 @@
                 Help me decide
               </button>
             </div>
-            <div class='inline-num-input'>
+            <div class="inline-num-input">
               <input type="number" id="num-colors" class="form-control input-lg" value="30">
               <button id="go" class="btn btn-lg btn-success">Go!</button>
             </div>
@@ -63,7 +73,7 @@
         <div class="preview-col img-cont-generic
                     col-xs-12
                     col-sm-7 col-sm-offset-1">
-          <h4>Image you uploaded</h4>
+          <h4>Image you selected</h4>
           <img class="img-box" id="preview">
         </div>
       </div>
@@ -72,18 +82,32 @@
         <div class="row">
           <div class="result-step col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-4">
             <h3>Step 3</h3>
-            <h4>Click on any part of the image or pallete to show the DMC thread colors</h4>
+            <h4>Click on any part of the image or palette to show the DMC thread colors</h4>
           </div>
         </div>
 
         <div class="row">
           <div class="col-xs-12 col-sm-7 r-img-cont img-cont-generic">
             <h4>Your image with reduced colors</h4>
+            <div class="result-img-description">Click on any part of the image to see the closest matching DMC threads.</div>
             <div class="img-box" id="redu"></div>
           </div>
-          <div class="pallete-cont col-xs-12 col-sm-4 col-sm-offset-1 img-cont-generic">
-            <h4>All colors used</h4>
-            <div class="img-box" id="palt"></div>
+          <div class="palette-cont col-xs-12 col-sm-4 col-sm-offset-1 img-cont-generic">
+            <h4>All colors in your image</h4>
+            <div class="tab-headers-cont">
+              <div class="tab-header active" id="palette-tab">Palette</div>
+              <div class="tab-header" id="list-tab">List</div>
+            </div>
+
+            <div class="tab-content-cont active" id="palette-content">
+              <div class="palette-description">Click on any square to see the closest matching DMC threads.</div>
+              <div class="img-box" id="palt"></div>
+            </div>
+
+            <div class="tab-content-cont" id="list-content">
+              <div id="color-list"></div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -111,4 +135,6 @@
   <script src="js/threads.js"></script>
   <script src="js/main.js"></script>
   <script src="js/fileinput.js"></script>
+  <script src="js/initsamples.js"></script>
+  <script src="js/tabs.js"></script>
 </html>

@@ -2726,11 +2726,11 @@ var allColors = Object.freeze([
     }
 ]);
 
-window.findClosest10 = function (r, g, b) {
+document.findClosest = function (num, r, g, b) {
     var n = function(e) {
         return Math.pow(r - e.r, 2) + Math.pow(g - e.g, 2) + Math.pow(b - e.b, 2)
     };
     return allColors.concat().sort(function(e, r) {
         return n(e) - n(r)
-    }).slice(0, 10)
+    }).slice(0, num);
 }

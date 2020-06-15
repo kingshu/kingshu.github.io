@@ -10,6 +10,7 @@ input[type="file"] {
 
 canvas, img.img-box {
 	box-shadow: 0 0 10px 0 #797979;
+	border-radius: 3px;
 }
 
 .upload-form {
@@ -19,7 +20,7 @@ canvas, img.img-box {
 	box-shadow: 0px 0px 10px 0px #b7b7b7;
 }
 
-.pallete-cont {
+.palette-cont {
 	margin-top: 5%;
 }
 
@@ -34,6 +35,8 @@ canvas, img.img-box {
 
 .preview-col {
 	margin-top: 5%;
+	padding: 10px 0;
+
 }
 
 .header-img-row {
@@ -54,7 +57,7 @@ canvas, img.img-box {
 
 #init-row {
 	text-align: center;
-	margin-top: 10%;
+	margin-top: 75px;
 }
 
 #inp-form {
@@ -70,7 +73,7 @@ canvas, img.img-box {
 	background-color: white;
 	box-shadow: 0px 0px 10px 0px #b7b7b7;
 	border-radius: 10px;
-	padding: 3% 0 5% 0;
+	padding: 3% 0;
 }
 
 .result-step {
@@ -94,6 +97,11 @@ canvas, img.img-box {
 body, html, .container-fluid {
   height: 100%;
   color: #383838;
+  padding-bottom: 75px;
+}
+
+.main-container {
+	padding-bottom: 100px;
 }
 
 h3 {
@@ -113,7 +121,7 @@ h3 {
 }
 
 .img-box {
-	margin-top: 25px;
+	margin: 25px 0;
 }
 
 #tooltip {
@@ -157,6 +165,7 @@ h3 {
     width: 18px;
     border-radius: 6px;
     vertical-align: sub;
+    border: 1px dotted #383838;
 }
 .flossnum {
 	display: inline-block;
@@ -191,4 +200,30 @@ h3 {
 body {
     background-image: url("img/bg.jpg");
     background-repeat: repeat;
+}
+
+.insp-text-row {
+	margin-top: 120px;
+	border-top: 2px dotted #c58d38;
+	padding-top: 4%
+}
+
+.insp-text {
+	background-color: rgba(255, 255, 255, 0.6);
+	border-radius: 10px;
+	box-shadow: 0px 0px 10px 0px #b7b7b7;
+	padding: 15px;
+}
+
+.insp-img {
+	border-radius: 3px;
+	width: 93%
+}
+
+.insp-img:hover {
+	cursor: pointer;
+}
+
+.suggest-img-div {
+	margin-top: 15px;
 }

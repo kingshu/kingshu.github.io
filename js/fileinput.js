@@ -1,46 +1,50 @@
 var input = document.getElementById('input'),
     button = document.getElementById('upload-btn'),
-    outputImg = document.getElementById('preview');
-    previewRow = document.getElementById('preview-row');
+    previewRow = document.getElementById('preview-row'),
     initRow = document.getElementById('init-row');
 
 //route click event on styled button to the actual file input
-button.addEventListener('click', function(e) {
+button.addEventListener("click", function(e) {
     e.preventDefault();
     input.click();
 }, false);
 
 //display the name of the selected file
-input.addEventListener('change', function(e) {
-    var outputImgWidth = "300";
+input.addEventListener("change", function(e) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function(event) {
-            var img = new Image();
-            img.onload = function() {
-                if (img.naturalWidth > 300 && window.innerWidth < 786) {
-                    resizeImageToSpecificWidth(img, 300);
-                } else if (img.naturalWidth > 600) {
-                    resizeImageToSpecificWidth(img, 600);
-                    outputImgWidth = "600";
-                } else {
-                    outputImgWidth = "" + img.naturalWidth;
-                    outputImg.src = event.target.result;
-                }
-                outputImg.width = outputImgWidth;
-            };
-            img.src = event.target.result;
+            renderPreviewImage(event.target.result);
         };
         reader.readAsDataURL(input.files[0]);
     }
-    
-    outputImg.onload = function() {
-        initRow.style.display = "none";
-        previewRow.style.display = "block";
-        document.getElementById("retry-row").style.display = "block";
-        URL.revokeObjectURL(outputImg.src) // free memory
-    }
 }, false);
+
+
+var renderPreviewImage = function(src) {
+    var outputImg = document.getElementById('preview');
+    outputImg.width = "300";
+    var img = new Image();
+    img.onload = function() {
+        if (img.naturalWidth > 300 && window.innerWidth < 786) {
+            outputImg.src = resizeImageToSpecificWidth(img, 300);
+        } else if (img.naturalWidth > 600) {
+            outputImg.src = resizeImageToSpecificWidth(img, 600);
+            outputImg.width = "600";
+        } else {
+            outputImg.width = "" + img.naturalWidth;
+            outputImg.src = event.target.result;
+        }
+
+        outputImg.onload = function() {
+            initRow.style.display = "none";
+            previewRow.style.display = "block";
+            document.getElementById("retry-row").style.display = "block";
+            URL.revokeObjectURL(outputImg.src) // free memory
+        };
+    };
+    img.src = src;
+};
 
 
 function resizeImageToSpecificWidth(img, width) {
@@ -56,7 +60,7 @@ function resizeImageToSpecificWidth(img, width) {
     oc.width = width;
     oc.height = oc.width * img.height / img.width;
     octx.drawImage(img, 0, 0, oc.width, oc.height);
-    outputImg.src = oc.toDataURL();
+    return oc.toDataURL();
 }
 
 document.getElementById("retry-btn").addEventListener('click', function(event) {

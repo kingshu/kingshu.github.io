@@ -1,3 +1,5 @@
+var paletteRgbs = null;
+
 function processImage() {
     var numColors = document.getElementById('num-colors').value;
 
@@ -28,6 +30,7 @@ function processImage() {
 
     // build palette
     var pal = q.palette();
+    paletteRgbs = q.palette(true);
     var pcan = drawPixels(pal, 5, 300);
     var palt = document.querySelector('#palt');
     palt.append(pcan);
@@ -133,7 +136,7 @@ function showColor(canvas, e) {
         }
     }
 
-    var closestFlosses = window.findClosest10(rgb[0], rgb[1], rgb[2]);
+    var closestFlosses = document.findClosest(10, rgb[0], rgb[1], rgb[2]);
 
     var closestColors = document.getElementById("closestcolors");
     closestcolors.innerHTML = "";
@@ -177,11 +180,12 @@ goBtn.addEventListener('click', function(event) {
     ldr.style.left = ((window.innerWidth / 2) - 150) + "px";
     ldr.style.visibility = "visible";
     processImage();
+    renderThreadsList();
     window.setTimeout(function() {
         ldr.style.visibility = "hidden";
         rRow.style.display = "block";
         pRow.style.display = "none";
-    }, 3000);
+    }, 1);
 });
 
 window.addEventListener('click', function(event) {
@@ -194,3 +198,37 @@ descBtn.addEventListener('click', function(event) {
     desc.innerHTML = "This is going to reduce the number of colors in the image to the number you set. So, if you are doing a high-detail technique like thread painting, you probably want to set this number higher, like 50. This will simplify your image to 50 different colors each corresponding to a different color of floss. In contrast, a cross-stitch project might only use 10 different floss colors, so for something like that, you should set this number to 10.";
     event.preventDefault();
 });
+
+function renderThreadsList() {
+    var colorList = document.getElementById("color-list");
+    for (var i in paletteRgbs) {
+        var red = paletteRgbs[i][0];
+        var green = paletteRgbs[i][1];
+        var blue = paletteRgbs[i][2];
+        var closestFloss = document.findClosest(1, red, blue, green)[0];
+        var colorCont = document.createElement("div");
+        colorCont.className = "list-color-container";
+
+        var colorball = document.createElement("div");
+        colorball.className = "list-colorball";
+        colorball.style.backgroundColor = "rgb(" 
+                                            + closestFloss['r'] + ","
+                                            + closestFloss['g'] + ","
+                                            + closestFloss['b'] + ")";
+        var flossNum = document.createElement("div");
+        flossNum.className = "list-flossnum";
+        flossNum.innerHTML = closestFloss['floss'];
+
+        var flossName = document.createElement("div");
+        flossName.className = "list-flossname";
+        flossName.innerHTML = closestFloss['name'];
+
+        colorCont.append(colorball);
+        colorCont.append(flossNum);
+        colorCont.append(flossName);
+
+        colorList.append(colorCont);
+    }
+}
+
+
