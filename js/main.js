@@ -203,6 +203,7 @@ var desc = document.getElementById("description");
 var descBtn = document.getElementById("description-btn");
 descBtn.addEventListener('click', function(event) {
     desc.innerHTML = "This is going to reduce the number of colors in the image to the number you set. So, if you are doing a high-detail technique like thread painting, you probably want to set this number higher, like 50. This will simplify your image to 50 different colors each corresponding to a different color of floss. In contrast, a cross-stitch project might only use 10 different floss colors, so for something like that, you should set this number to 10.";
+    desc.style.textAlign = "justify";
     event.preventDefault();
 });
 

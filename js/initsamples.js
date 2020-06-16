@@ -35,7 +35,6 @@ if (window.innerWidth > 786) {
 }
 
 var createSamples = function() {
-    console.log(samplesIndex);
     for (var i = 0; i < numSamplesToShow; i++) {
         var imgContDiv = sampler.getImageContainer(imgUrlFormat + randoms[samplesIndex] + ".jpg");
         cols[samplesIndex % numCols].append(imgContDiv);

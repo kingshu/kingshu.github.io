@@ -7,7 +7,7 @@ document.getElementById("print-btn").addEventListener("click", function() {
 
     var titleContStr = '<div class="title-cont print-elem"><img id="title-img" src="css/img/flossfinder.png"><img id="title-img" src="css/img/flossfinder.png"><img id="title-img" src="css/img/flossfinder.png"><img id="title-img" src="css/img/flossfinder.png"><img id="title-img" src="css/img/flossfinder.png"><img id="title-img" src="css/img/flossfinder.png"></div>'
 
-    var a = window.open('', '', 'height=700, width=700'); 
+    var a = window.open('', '', 'height=700, width=1000'); 
     a.document.write('<html><body>');
     a.document.write(titleContStr);
     a.document.write('<link rel="stylesheet" href="css/print.css" type="text/css"/>');
@@ -16,11 +16,15 @@ document.getElementById("print-btn").addEventListener("click", function() {
     a.document.write('<div id="redu-img-cont" class="print-elem bottom-spaced"><img id="redu-img" src="' + imgDataUrl + '"></div>');
     a.document.write(titleContStr);
     a.document.write('<div class="print-elem bottom-spaced"><h3>Palette:</h3><img class="palt-img" src="' + pltDataUrl + '"></div>');
-    a.document.write('<div class="print-elem bottom-spaced color-list"><h3>Threads list</h3>' + colorList.innerHTML + '</div>');
+    a.document.write('<div class="print-elem bottom-spaced color-list"><h3>Closes threads list</h3>' + colorList.innerHTML + '</div>');
     a.document.write('</body></html>'); 
     a.document.close();
     a.focus();
 
+    createPrintBtns(a);
+});
+
+function createPrintBtns(a) {
     var btnContainer = a.document.createElement("div");
     btnContainer.className = "button-container";
 
@@ -62,8 +66,37 @@ document.getElementById("print-btn").addEventListener("click", function() {
     });
     btnContainer.append(smBtn);
 
-    a.document.body.append(btnContainer);
-});
+    a.document.body.prepend(btnContainer);
+}
+
+function transformThreadColorballs(a) {
+    var colorBalls = a.document.getElementsByClassName("list-colorball");
+    for (var i=0; i<colorBalls.length; i++) {
+        colorBalls[i].innerHTML = "";
+        colorBalls[i].append(getImgColorBall(a, colorBalls[i].style.backgroundColor));
+        colorBalls[i].style.backgroundColor = "";
+    }
+}
+
+function getImgColorBall(a, rgbStr) {
+    var SIZE = 30;
+    var c = a.document.createElement("canvas");
+    c.height = c.width = SIZE;
+    var ctx = c.getContext("2d");
+    var imgData = ctx.createImageData(SIZE, SIZE);
+    var rgbRgx = /rgb\((\d+), (\d+), (\d+)\)/g;
+    var matches = rgbRgx.exec(rgbStr);
+    for (var i=0; i<imgData.data.length; i+=4) {
+      imgData.data[i+0] = matches[1];
+      imgData.data[i+1] = matches[2];
+      imgData.data[i+2] = matches[3];
+      imgData.data[i+3] = 255;
+    }
+    ctx.putImageData(imgData, 0, 0);
+    var img = a.document.createElement("img");
+    img.src = c.toDataURL();
+    return img;
+}
 
 function transformImg(a, displayImgHeight) {
     var reduImg = a.document.getElementById("redu-img");
@@ -76,10 +109,10 @@ function transformImg(a, displayImgHeight) {
 
     var reduImgCont = a.document.getElementById("redu-img-cont");
     reduImgCont.style.paddingTop = Math.floor((PAGE_HEIGHT/2) - (reduImg.height/2)) + "px";
-    console.log(reduImgCont.style.paddingTop);
 }
 
 function showPrintElems(a) {
+    transformThreadColorballs(a)
     var pElems = a.document.getElementsByClassName('print-elem');
     for (var i=0; i<pElems.length; i++) {
         pElems[i].style.visibility = "visible";
@@ -87,8 +120,8 @@ function showPrintElems(a) {
 }
 
 function triggerPrintDialog(a) {
-    setTimeout(function() {
+    a.setTimeout(function() {
         a.print();
-        setTimeout(a.close, 200);
-    }, 100);
+    }, 400);
+    //setTimeout(a.close, 500);
 }
