@@ -1,0 +1,31 @@
+.insp-text-row {
+	padding-top: 4%
+}
+
+.insp-first-row {
+	margin-top: 30px;
+}
+
+.insp-text {
+	background-color: rgba(255, 255, 255, 0.6);
+	border-radius: 10px;
+	box-shadow: 0px 0px 10px 0px #b7b7b7;
+	padding: 15px;
+}
+
+.insp-img {
+	border-radius: 3px;
+	width: 93%
+}
+
+.insp-img:hover {
+	cursor: pointer;
+}
+
+.suggest-img-div {
+	margin-top: 15px;
+}
+
+#nolike {
+	margin-right: 20px;
+}

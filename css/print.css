@@ -1,0 +1,85 @@
+@media print {
+	body {
+		-webkit-print-color-adjust: exact;
+		color-adjust: exact;
+	}
+}
+
+#title-img {
+	height: 60px;
+	margin: 0 5px;
+}
+.title-cont {
+	text-align: center;
+	overflow: hidden;
+	height: 60px;
+}
+
+.color-list {
+	width: 800px;
+	margin-top: 50px;
+}
+
+.list-color-container {
+	height: 25px;
+    padding: 5px 0 0 10%;
+    margin-bottom: 20px;
+}
+
+.list-colorball {
+	width: 30px;
+	height: 30px;
+	display: inline-block;
+	margin-right: 3%;
+	border-radius: 10px;
+	border: 1px dotted #383838;
+}
+
+.list-flossnum {
+	display: inline-block;
+	padding: 0px 0 20px 0;
+    display: inline-block;
+    width: 20%;
+    vertical-align: middle;
+    font-weight: bold;
+}
+
+.list-flossname {
+	display: inline-block;
+	padding: 0px 0 20px 0;
+    display: inline-block;
+    width: 60%;
+    vertical-align: middle;
+}
+
+.print-elem {
+	visibility: hidden;
+}
+
+.print-elem.bottom-spaced {
+	margin-bottom: 80px;
+}
+
+#redu-img-cont {
+	text-align: center;
+	height: 900px;
+	border: 1px dashed black;
+}
+
+.palt-img {
+	min-width: 400px;
+}
+
+.button-container {
+	margin-top: 50px;
+    text-align: center;
+}
+
+.print-btn {
+	margin: 15% 0;
+    transform: scale(2.5);
+}
+
+.action-row {
+	
+}

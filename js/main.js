@@ -32,6 +32,7 @@ function processImage() {
     var pal = q.palette();
     paletteRgbs = q.palette(true);
     var pcan = drawPixels(pal, 5, 300);
+    pcan.id = "canvas-palette";
     var palt = document.querySelector('#palt');
     palt.append(pcan);
 
@@ -42,6 +43,7 @@ function processImage() {
         imgWidth = 300;
     }
     var ican = drawPixels(out, img.naturalWidth, imgWidth);
+    ican.id = "canvas-reducedimg";
 
     var redu = document.querySelector('#redu');
     redu.append(ican);
@@ -107,7 +109,8 @@ function showColor(canvas, e) {
     var renderAbove = false;
     var renderLeft = false;
 
-    tooltip.style.visibility = "visible";
+    animations.fadeIn(tooltip);
+
     if ((e.clientY - 350) < 20) {
         tooltip.style.top = e.clientY + "px";
     } else {
@@ -140,7 +143,7 @@ function showColor(canvas, e) {
 
     var closestColors = document.getElementById("closestcolors");
     closestcolors.innerHTML = "";
-    for (var i in closestFlosses) {
+    for (var i=0; i<closestFlosses.length; i++) {
         var colorCont = document.createElement("div");
         colorCont.className = "color-container";
 
@@ -178,18 +181,22 @@ goBtn.addEventListener('click', function(event) {
     event.preventDefault();
     ldr.style.top = ((window.innerHeight / 2) - 150) + "px";
     ldr.style.left = ((window.innerWidth / 2) - 150) + "px";
-    ldr.style.visibility = "visible";
+    animations.fadeIn(ldr);
     processImage();
     renderThreadsList();
     window.setTimeout(function() {
-        ldr.style.visibility = "hidden";
-        rRow.style.display = "block";
-        pRow.style.display = "none";
-    }, 1);
+        animations.fadeOut(pRow, function() {
+            animations.scrolltop();
+            animations.fadeOut(ldr, function() {
+                animations.fadeIn(rRow);
+            });    
+        });
+    }, 1000);
 });
 
 window.addEventListener('click', function(event) {
     tooltip.style.visibility = "hidden";
+    tooltip.style.opacity = 0;
 });
 
 var desc = document.getElementById("description");
@@ -201,7 +208,7 @@ descBtn.addEventListener('click', function(event) {
 
 function renderThreadsList() {
     var colorList = document.getElementById("color-list");
-    for (var i in paletteRgbs) {
+    for (var i=0; i<paletteRgbs.length; i++) {
         var red = paletteRgbs[i][0];
         var green = paletteRgbs[i][1];
         var blue = paletteRgbs[i][2];

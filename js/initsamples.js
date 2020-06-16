@@ -1,60 +1,65 @@
-var maxSamplesSources = 9;
-var maxSamplesToShow = 6;
-
 var randoms = [];
-while (randoms.length < maxSamplesToShow) {
-    var r = Math.floor(Math.random() * maxSamplesSources) + 1;
-    if (randoms.indexOf(r) === -1) {
-    	randoms.push(r);
-    }
+var samplesIndex = 0;
+var numSamplesToShow = 6;
+var maxSamplesSources = 29;
+var imgUrlFormat = "sampleimages/si_";
+
+var ordered = [];
+for (i = 1 ; i <= maxSamplesSources; i++) {
+    ordered.push(i)
 }
-/*
-  <div class="col-xs-6 col-sm-4">
-    <div class="img-cont-generic suggest-img-div">
-      <img id="si1" src="" width="93%">
-    </div>
-  </div>
-*/
+function shuffle(a) {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+    return a;
+}
+randoms = shuffle(ordered);
 
 var numCols = 2;
-
 var col0 = document.createElement("div");
 col0.className = "col-xs-6 col-sm-4";
 var col1 = document.createElement("div");
 col1.className = "col-xs-6 col-sm-4";
 var col2 = null;
 var cols = [col0, col1];
-
 if (window.innerWidth > 786) {
-	col2 = document.createElement("div");
-	col2.className = "col-sm-4";
-	cols.push(col2);
-	numCols = 3;	
+    col2 = document.createElement("div");
+    col2.className = "col-sm-4";
+    cols.push(col2);
+    numCols = 3;    
 }
 
-for (var i = 0; i < maxSamplesToShow; i++) {
-	var imgContDiv = getImageContainer("sampleimages/si_" + randoms[i] + ".jpg");
-	cols[i % numCols].append(imgContDiv);
+var createSamples = function() {
+    console.log(samplesIndex);
+    for (var i = 0; i < numSamplesToShow; i++) {
+        var imgContDiv = sampler.getImageContainer(imgUrlFormat + randoms[samplesIndex] + ".jpg");
+        cols[samplesIndex % numCols].append(imgContDiv);
+        samplesIndex++;
+        if (samplesIndex >= randoms.length) {
+            document.getElementById("showmore").innerHTML = "&#128542 We're sorry, these are all the images we have for now! We curate these frequently, so check back in soon for new ones!";
+            break;
+        }
+    }
+
+    var inspImages = document.getElementById("insp-images");
+    for (var i=0; i<cols.length; i++) {
+        inspImages.append(cols[i]);
+    }
 }
 
-var inspImages = document.getElementById("insp-images");
-for (var i in cols) {
-	inspImages.append(cols[i]);
-}
-
-function getImageContainer(src) {
+var getImageContainer = function(src) {
 	var imgCont = document.createElement("div");
 	imgCont.className = "img-cont-generic suggest-img-div";
 	var img = document.createElement("img");
 	img.src = src;
 	img.className = "insp-img";
 	img.addEventListener("click", function(e) {
-		try {
-			renderPreviewImage(src);	
-		} catch(err) {
-			alert(err);
-		}
-		
+		renderPreviewImage(src);
 	});
 	imgCont.append(img);
 	return imgCont;
@@ -76,8 +81,10 @@ var renderPreviewImage = function(src) {
         }
 
         outputImg.onload = function() {
-            initRow.style.display = "none";
-            previewRow.style.display = "block";
+            animations.fadeOut(initRow, function() {
+                animations.scrolltop();    
+                animations.fadeIn(document.getElementById("preview-row"));
+            });
             document.getElementById("retry-row").style.display = "block";
             URL.revokeObjectURL(outputImg.src) // free memory
         };
@@ -102,3 +109,16 @@ function resizeImageToSpecificWidth(img, width) {
     return oc.toDataURL();
 }
 
+
+var sampler = {
+    createSamples: createSamples,
+    getImageContainer: getImageContainer,
+    renderPreviewImage: renderPreviewImage,
+    resizeImageToSpecificWidth: resizeImageToSpecificWidth
+};
+
+sampler.createSamples();
+
+document.getElementById("nolike-btn").addEventListener("click", function(e) {
+    sampler.createSamples();
+})
