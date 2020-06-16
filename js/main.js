@@ -213,7 +213,7 @@ function renderThreadsList() {
         var red = paletteRgbs[i][0];
         var green = paletteRgbs[i][1];
         var blue = paletteRgbs[i][2];
-        var closestFloss = document.findClosest(1, red, blue, green)[0];
+        var closestFloss = document.findClosest(1, red, green, blue)[0];
         var colorCont = document.createElement("div");
         colorCont.className = "list-color-container";
 
