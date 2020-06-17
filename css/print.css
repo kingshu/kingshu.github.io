@@ -62,16 +62,45 @@
 	min-width: 400px;
 }
 
-.button-container {
-	margin-top: 50px;
-    text-align: center;
+@media screen and (min-width: 993px) {
+	.button-container {
+		margin-top: 50px;
+	    text-align: center;
+	}
+
+	.print-btn-row {
+		transform: scale(1.5);
+		margin-bottom: 75px;
+	}
+
+	.disclaimer {
+		display: inline-block;
+		width: 60%;
+		font-size: 1.5em;
+		margin-bottom: 75px;
+	}
 }
 
-.print-btn {
-	margin-top: 15%;
-    transform: scale(2.5);
+@media screen and (max-width: 992px) {
+	body {
+		text-align: center;
+	}
+
+	.button-container {
+		margin-top: 50px;
+	    text-align: center;
+	}
+	.print-btn-row {
+	    margin-bottom: 300px;
+	}
+	.print-btn {
+		transform: scale(4);
+	}
+	.disclaimer {
+		font-size: 3.5em;
+		margin-bottom: 200px;
+		padding: 0 100px;
+	}
 }
 
-.action-row {
-	
-}
+

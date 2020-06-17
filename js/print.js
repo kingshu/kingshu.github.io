@@ -27,6 +27,7 @@ document.getElementById("print-btn").addEventListener("click", function() {
 function createPrintBtns(a) {
     var btnContainer = a.document.createElement("div");
     btnContainer.className = "button-container";
+    btnContainer.innerHTML = "<div class='disclaimer'>Some printers may not render colors accurately. Always use the web application for the most accurate color representation.<br><br>You can close this window after printing or if you want to cancel.</div>";
 
     var lgBtn = a.document.createElement('button');
     lgBtn.className = "print-btn btn btn-lg btn-default";
@@ -38,8 +39,10 @@ function createPrintBtns(a) {
         showPrintElems(a);
         triggerPrintDialog(a);
     });
-    btnContainer.append(lgBtn);
-    btnContainer.append(a.document.createElement("br"));
+    var lgBtnDiv = a.document.createElement("div");
+    lgBtnDiv.className = "print-btn-row";
+    lgBtnDiv.append(lgBtn);
+    btnContainer.append(lgBtnDiv);
 
     var mdBtn = a.document.createElement('button');
     mdBtn.className = "print-btn btn btn-md btn-default";
@@ -51,8 +54,10 @@ function createPrintBtns(a) {
         showPrintElems(a);
         triggerPrintDialog(a);
     });
-    btnContainer.append(mdBtn);
-    btnContainer.append(a.document.createElement("br"));
+    var mdBtnDiv = a.document.createElement("div");
+    mdBtnDiv.className = "print-btn-row";
+    mdBtnDiv.append(mdBtn);
+    btnContainer.append(mdBtnDiv);
 
     var smBtn = a.document.createElement('button');
     smBtn.className = "print-btn btn btn-sm btn-default";
@@ -64,7 +69,10 @@ function createPrintBtns(a) {
         showPrintElems(a);
         triggerPrintDialog(a);
     });
-    btnContainer.append(smBtn);
+    var smBtnDiv = a.document.createElement("div");
+    smBtnDiv.className = "print-btn-row";
+    smBtnDiv.append(smBtn);
+    btnContainer.append(smBtnDiv);
 
     a.document.body.prepend(btnContainer);
 }
