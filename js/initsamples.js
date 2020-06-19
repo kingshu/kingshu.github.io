@@ -81,7 +81,7 @@ var renderPreviewImage = function(src) {
 
         outputImg.onload = function() {
             animations.fadeOut(initRow, function() {
-                animations.scrolltop();    
+                animations.scrolltop();
                 animations.fadeIn(document.getElementById("preview-row"));
             });
             document.getElementById("retry-row").style.display = "block";

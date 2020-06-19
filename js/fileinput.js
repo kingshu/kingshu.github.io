@@ -22,5 +22,6 @@ input.addEventListener("change", function(e) {
 
 document.getElementById("retry-btn").addEventListener('click', function(event) {
     event.preventDefault();
+    animations.scrolltop();
     window.location.reload(false);
 });
