@@ -12,7 +12,7 @@ document.getElementById("print-btn").addEventListener("click", function() {
     a.document.write(titleContStr);
     a.document.write('<link rel="stylesheet" href="css/print.css" type="text/css"/>');
     a.document.write('<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>');
-    a.document.write('<h3 class="print-elem">Reduced color image</h3>')
+    a.document.write('<h3 id="top-print-elem" class="print-elem">Reduced color image</h3>')
     a.document.write('<div id="redu-img-cont" class="print-elem bottom-spaced"><img id="redu-img" src="' + imgDataUrl + '"></div>');
     a.document.write(titleContStr);
     a.document.write('<div class="print-elem bottom-spaced"><h3>Palette:</h3><img class="palt-img" src="' + pltDataUrl + '"></div>');
@@ -74,7 +74,7 @@ function createPrintBtns(a) {
     smBtnDiv.append(smBtn);
     btnContainer.append(smBtnDiv);
 
-    a.document.body.prepend(btnContainer);
+    a.document.body.insertBefore(btnContainer, a.document.getElementById("top-print-elem"));
 }
 
 function transformThreadColorballs(a) {

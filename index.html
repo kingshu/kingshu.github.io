@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/suggestions.css">
     <link rel="stylesheet" href="css/tabs.css">
+    <link rel="stylesheet" href="css/actions.css">
 
   </head>
   <body>
@@ -95,6 +96,14 @@
             <h4>Your image with reduced colors</h4>
             <div class="result-img-description">Click on any part of the image to see the closest matching DMC threads.</div>
             <div class="img-box result-clickable" id="redu"></div>
+            <div class="top-spaced-cont dl-btn">
+              <a id="dl-img" download="ReducedColorImage.png">
+                <button class="btn btn-md">
+                  <span class='glyphicon glyphicon-download-alt'></span>
+                  Download Image
+                </button>
+              </a>
+            </div>
           </div>
           <div class="top-spaced-cont col-xs-12 col-sm-4 col-sm-offset-1 img-cont-generic">
             <h4>All colors in your image</h4>
@@ -106,6 +115,14 @@
             <div class="tab-content-cont active" id="palette-content">
               <div class="palette-description">Click on any square to see the closest matching DMC threads.</div>
               <div class="img-box result-clickable" id="palt"></div>
+              <div class="top-spaced-cont dl-btn">
+                <a id="dl-plt" download="Palette.png">
+                  <button class="btn btn-md">
+                    <span class='glyphicon glyphicon-download-alt'></span>
+                    Download Palette
+                  </button>
+                </a>
+            </div>
             </div>
 
             <div class="tab-content-cont" id="list-content">
@@ -116,13 +133,22 @@
         </div>
 
         <div class="row">
-          <div class="step-box top-spaced-cont col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3">
+          <div id="actions-cont" class="step-box top-spaced-cont col-xs-10 col-xs-offset-1">
             <h3>Step 4</h3>
             <h4>How do you want to use your palette and image?</h4>
-            <button class="btn btn-lg btn-default" id="print-btn">
+
+            <button class="btn btn-lg btn-default act-btn" id="print-btn">
               <span class="glyphicon glyphicon-print"></span>
               Print
             </button>
+              
+            <a id="dl-combo" download="Shareable.png">
+              <button class="btn btn-lg btn-default act-btn">
+                <span class='glyphicon glyphicon-download-alt'></span>
+                Download Shareable
+              </button>
+            </a>
+
           </div>
         </div>
       </div>
@@ -146,6 +172,7 @@
     </div>
   </body>
 
+  <script src="js/nativeshare.js"></script>
   <script src="js/animations.js"></script>
   <script src="js/rgbquant.js"></script>
   <script src="js/threads.js"></script>

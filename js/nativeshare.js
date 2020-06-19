@@ -12,15 +12,15 @@ if (!HTMLCanvasElement.prototype.toBlob) {
  });
 };
 
-document.getElementById("share-btn").addEventListener('click', event => {
-    
+var share = {};
+var createSharableCanvas = function() {
     var imgCanvas = document.getElementById("canvas-reducedimg");
     var pltCanvas = document.getElementById("canvas-palette");
     var pCtx = pltCanvas.getContext("2d");
 
     var targetCanvas = document.createElement("canvas");
-    targetCanvas.height = imgCanvas.height * 2;
-    targetCanvas.width = imgCanvas.width * 2;
+    targetCanvas.height = share.height = imgCanvas.height * 2;
+    targetCanvas.width = share.width = imgCanvas.width * 2;
     var tCtx = targetCanvas.getContext("2d");
     tCtx.drawImage(imgCanvas, 0, 0, targetCanvas.width, targetCanvas.height);
 
@@ -45,37 +45,43 @@ document.getElementById("share-btn").addEventListener('click', event => {
         tCtx.drawImage(tempCanvas, pltDrawStartX, pltDrawStartY, pltDrawWidth, pltDrawHeight);
     }
 
-    //
+    prepareDownloads(targetCanvas);
 
     targetCanvas.toBlob(function(blob) {
-
-        uploadToS3(blob);
-
-        var imgAsFile = new File([blob], "myflosspalette.png", {type: "image/png", lastModified: Date.now()});
-        var shareData = { files: [imgAsFile] };
-
-        try {
-            if (navigator.canShare && navigator.canShare(shareData)) {
-                shareData.url = "https://67.160.103.208:8000";
-                shareData.title = "My DMC floss palette on Flossfinder!";
-
-                navigator.share(shareData)
-            } else {
-                // fallback
-                console.log("womp womp");
-            }
-
-        } catch(err) {
-            alert(err);
-        }
+        prepareNativeShare(blob);
     });
 
-});
+    return targetCanvas;
+}
 
-function uploadToS3(blob) {
+share.createSharableCanvas = createSharableCanvas;
+
+function prepareDownloads(shareableCanvas) {
+    document.getElementById("dl-combo").href = shareableCanvas.toDataURL();
+    document.getElementById("dl-img").href = document.getElementById("canvas-reducedimg").toDataURL();
+    document.getElementById("dl-plt").href = document.getElementById("canvas-palette").toDataURL();
+}
+
+function prepareNativeShare(blob) {
+    var imgAsFile = new File([blob], "myflosspalette.png", {type: "image/png", lastModified: Date.now()});
+    var shareData = { files: [imgAsFile] };
+    if (navigator.canShare && navigator.canShare(shareData)) {
+        var shareBtn = document.createElement("button");
+        shareBtn.className = "act-btn btn btn-lg btn-default";
+        shareBtn.innerHTML = "<span class='glyphicon glyphicon-share-alt'></span> Share";
+        shareBtn.addEventListener('click', function(event) {    
+            shareData.url = "https://67.160.103.208:8000";
+            shareData.title = "Flossfinder";
+            shareData.text = "My DMC floss palette on Flossfinder!";
+            navigator.share(shareData);
+        });
+        document.getElementById("actions-cont").append(shareBtn);
+    }
+}
+
+function uploadToS3(blob, filename, callback) {
     var formData = new FormData();
-
-    formData.append("key", uuidv4() + ".png");
+    formData.append("key", filename);
     formData.append("expires", "60");
     formData.append("acl", "public-read");
     formData.append("Content-Type", "image/png");
@@ -83,6 +89,11 @@ function uploadToS3(blob) {
 
     var request = new XMLHttpRequest();
     request.open("POST", "https://flossfinder.s3.amazonaws.com");
+    request.onreadystatechange = function() {
+        if (request.readyState === 4) {
+          callback();
+        }
+    };
     request.send(formData);
 }
 
