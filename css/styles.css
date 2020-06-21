@@ -14,6 +14,7 @@ body, html, .container-fluid {
   color: #383838;
   padding-bottom: 75px;
   text-align: center;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .step-box {
@@ -68,7 +69,8 @@ body, html, .container-fluid {
 }
 
 h3 {
-	color: #a97322;	
+	font-family: 'DM Serif Display', serif;
+	color: #a97322;
 }
 
 .upload-btn {

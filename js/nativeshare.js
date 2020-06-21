@@ -18,17 +18,19 @@ var createSharableCanvas = function() {
     var pltCanvas = document.getElementById("canvas-palette");
     var pCtx = pltCanvas.getContext("2d");
 
+    var bottomBarHeight = 90;
+
     var targetCanvas = document.createElement("canvas");
-    targetCanvas.height = share.height = imgCanvas.height * 2;
+    targetCanvas.height = share.height = imgCanvas.height * 2 + bottomBarHeight;
     targetCanvas.width = share.width = imgCanvas.width * 2;
     var tCtx = targetCanvas.getContext("2d");
-    tCtx.drawImage(imgCanvas, 0, 0, targetCanvas.width, targetCanvas.height);
+    tCtx.drawImage(imgCanvas, 0, 0, imgCanvas.width * 2, imgCanvas.height * 2);
 
-    var pltDrawWidth  = targetCanvas.width / 2;
-    var pltDrawHeight = targetCanvas.height / 2;
-    var pltDrawStartX = targetCanvas.width / 4;
-    var pltDrawStartY = targetCanvas.height / 4;
-    
+    var pltDrawWidth  = imgCanvas.width;
+    var pltDrawHeight = imgCanvas.height;
+    var pltDrawStartX = imgCanvas.width / 2;
+    var pltDrawStartY = imgCanvas.height / 2;
+
 
     if (   (imgCanvas.height > imgCanvas.width && pltCanvas.height > pltCanvas.width)
         || (imgCanvas.height < imgCanvas.width && pltCanvas.height < pltCanvas.width)) {
@@ -44,6 +46,23 @@ var createSharableCanvas = function() {
 
         tCtx.drawImage(tempCanvas, pltDrawStartX, pltDrawStartY, pltDrawWidth, pltDrawHeight);
     }
+
+    // palette border
+    tCtx.strokeStyle = "#8a8a8a";
+    tCtx.lineWidth = 8;
+    tCtx.strokeRect(pltDrawStartX, pltDrawStartY, pltDrawWidth, pltDrawHeight);
+
+    //bottom bar
+    tCtx.fillStyle = "#3F4727";
+    tCtx.fillRect(0, targetCanvas.height - bottomBarHeight, targetCanvas.width, bottomBarHeight);
+
+    // bottom bar hashtag
+    var shareHashtagText = "#FlossFinder";
+    tCtx.font = "35pt Montserrat";
+    var htStartX = targetCanvas.width - 320;
+    var htStartY = targetCanvas.height - 30;
+    tCtx.fillStyle = "#EA9A8A";
+    tCtx.fillText(shareHashtagText, htStartX, htStartY);
 
     prepareDownloads(targetCanvas);
 

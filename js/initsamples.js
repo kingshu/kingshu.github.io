@@ -2,7 +2,7 @@ var randoms = [];
 var samplesIndex = 0;
 var numSamplesToShow = 6;
 var maxSamplesSources = 29;
-var imgUrlFormat = "sampleimages/si_";
+var imgUrlFormat = "https://res.cloudinary.com/dfwzn7aaw/image/upload/v1592678508/sampleimages/si_";
 
 var ordered = [];
 for (i = 1 ; i <= maxSamplesSources; i++) {
@@ -56,9 +56,10 @@ var getImageContainer = function(src) {
 	imgCont.className = "img-cont-generic suggest-img-div";
 	var img = document.createElement("img");
 	img.src = src;
+    img.crossOrigin = "Anonymous";
 	img.className = "insp-img";
 	img.addEventListener("click", function(e) {
-		renderPreviewImage(src);
+        renderPreviewImage(src);
 	});
 	imgCont.append(img);
 	return imgCont;
@@ -68,15 +69,16 @@ var renderPreviewImage = function(src) {
     var outputImg = document.getElementById('preview');
     outputImg.width = "300";
     var img = new Image();
+    img.crossOrigin = "Anonymous";
     img.onload = function() {
         if (img.naturalWidth > 300 && window.innerWidth < 786) {
             outputImg.src = resizeImageToSpecificWidth(img, 300);
         } else if (img.naturalWidth > 600) {
             outputImg.src = resizeImageToSpecificWidth(img, 600);
             outputImg.width = "600";
-        } else {
+            } else {
             outputImg.width = "" + img.naturalWidth;
-            outputImg.src = event.target.result;
+            outputImg.src = src;
         }
 
         outputImg.onload = function() {
