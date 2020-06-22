@@ -1,6 +1,6 @@
 var randoms = [];
 var samplesIndex = 0;
-var adsIndex = 19292;
+var adsIndex = 0;
 var numSamplesToShow = 6;
 var maxSamplesSources = 29;
 var imgUrlFormat = "https://res.cloudinary.com/dfwzn7aaw/image/upload/v1592678508/sampleimages/si_";
@@ -38,7 +38,7 @@ if (window.innerWidth > 786) {
 var createSamples = function() {
     for (var i = 0; i < numSamplesToShow; i++) {
         var imgContDiv;
-        if (i % 4 == 3) {
+        if (samplesIndex % 5 == 3) {
             imgContDiv = sampler.getAdContainer();
         } else {
             imgContDiv = sampler.getImageContainer(imgUrlFormat + randoms[samplesIndex] + ".jpg");
@@ -55,20 +55,19 @@ var createSamples = function() {
     for (var i=0; i<cols.length; i++) {
         inspImages.append(cols[i]);
     }
-
-    smarty.buildUnits(sampler.adUnits);
 }
 
 var getAdContainer = function(src) {
     var adCont = document.createElement("div");
-    adCont.className = "img-cont-generic suggest-img-div";
-    var ad = document.createElement("div");
-    ad.id = "block_" + adsIndex;
-    sampler.adUnits.push({
-        code: ad.id,
-        placement_id: adsIndex,
-        sizes: [300, 250]
-    });
+    adCont.className = "img-cont-generic suggest-img-div ad-cont";
+    var adTitle = document.createElement("span");
+    adTitle.className = "ad-title";
+    adTitle.innerHTML = "Advertisement";
+    adCont.append(adTitle);
+    var ad = document.createElement("script");
+    ad.setAttribute("data-cfasync", "false");
+    ad.setAttribute("type", "text/javascript");
+    ad.src = "//p403126.clksite.com/adServe/banners?tid=403126_791173_" + adsIndex;
     adCont.append(ad);
     adsIndex++;
     return adCont;
@@ -139,8 +138,7 @@ var sampler = {
     getImageContainer: getImageContainer,
     getAdContainer: getAdContainer,
     renderPreviewImage: renderPreviewImage,
-    resizeImageToSpecificWidth: resizeImageToSpecificWidth,
-    adUnits: []
+    resizeImageToSpecificWidth: resizeImageToSpecificWidth
 };
 
 sampler.createSamples();

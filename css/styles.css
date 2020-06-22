@@ -55,6 +55,15 @@ body, html, .container-fluid {
 	padding: 3% 0;
 }
 
+.img-cont-generic.ad-cont {
+	text-align: left;
+	padding: 3% 8%;
+}
+
+.ad-title {
+	font-weight: 700;
+}
+
 #num-colors {
 	width: 80px;
 	display: inline-block;
