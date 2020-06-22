@@ -114,7 +114,7 @@ function resizeImageToSpecificWidth(img, width) {
 
 var sampler = {
     createSamples: createSamples,
-    getImageContainer: getImageContainer
+    getImageContainer: getImageContainer,
     renderPreviewImage: renderPreviewImage,
     resizeImageToSpecificWidth: resizeImageToSpecificWidth
 };
