@@ -1,6 +1,6 @@
 var randoms = [];
 var samplesIndex = 0;
-var adsIndex = 0;
+var adsIndex = 19294;
 var numSamplesToShow = 6;
 var maxSamplesSources = 29;
 var imgUrlFormat = "https://res.cloudinary.com/dfwzn7aaw/image/upload/v1592678508/sampleimages/si_";
@@ -38,8 +38,9 @@ if (window.innerWidth > 786) {
 var createSamples = function() {
     for (var i = 0; i < numSamplesToShow; i++) {
         var imgContDiv;
-        if (samplesIndex % 5 == 3) {
-            imgContDiv = sampler.getAdContainer();
+        //if (samplesIndex % 5 == 3) {
+        if (samplesIndex % 10 == 6 || samplesIndex % 10 == 9) {
+            imgContDiv = sampler.getAdContainer2();
         } else {
             imgContDiv = sampler.getImageContainer(imgUrlFormat + randoms[samplesIndex] + ".jpg");
         }
@@ -55,6 +56,29 @@ var createSamples = function() {
     for (var i=0; i<cols.length; i++) {
         inspImages.append(cols[i]);
     }
+}
+
+var getAdContainer2 = function(src) {
+    var adCont = document.createElement("div");
+    adCont.className = "img-cont-generic suggest-img-div ad-cont";
+    var adTitle = document.createElement("span");
+    adTitle.className = "ad-title";
+    adTitle.innerHTML = "Advertisement";
+    adCont.append(adTitle);
+    
+    var ad_id = "block_" + adsIndex;
+    var ad = document.createElement("div");
+    ad.id = ad_id;
+    sampler.adUnits.push({
+        code: ad_id,
+        placement_id: adsIndex,
+        sizes: [300, 250]
+    });
+    smarty.buildUnits(sampler.adUnits);
+
+    adCont.append(ad);
+    adsIndex++;
+    return adCont;
 }
 
 var getAdContainer = function(src) {
@@ -137,12 +161,14 @@ var sampler = {
     createSamples: createSamples,
     getImageContainer: getImageContainer,
     getAdContainer: getAdContainer,
+    getAdContainer2: getAdContainer2,
     renderPreviewImage: renderPreviewImage,
-    resizeImageToSpecificWidth: resizeImageToSpecificWidth
+    resizeImageToSpecificWidth: resizeImageToSpecificWidth,
+    adUnits: []
 };
 
 sampler.createSamples();
 
 document.getElementById("nolike-btn").addEventListener("click", function(e) {
     sampler.createSamples();
-})
+});
