@@ -3,7 +3,7 @@ var samplesIndex = 0;
 var adsIndex = 19294;
 var numSamplesToShow = 6;
 var maxSamplesSources = 29;
-var imgUrlFormat = "https://res.cloudinary.com/dfwzn7aaw/image/upload/v1592678508/sampleimages/si_";
+var imgUrlFormat = "https://res.cloudinary.com/dfwzn7aaw/image/upload/v1592870749/sampleimages/si_";
 
 var ordered = [];
 for (i = 1 ; i <= maxSamplesSources; i++) {
