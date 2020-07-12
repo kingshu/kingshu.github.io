@@ -10,10 +10,11 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/top-desc.css">
     <link rel="stylesheet" href="css/suggestions.css">
     <link rel="stylesheet" href="css/tabs.css">
     <link rel="stylesheet" href="css/actions.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Montserrat:wght@300;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Montserrat:wght@300&display=swap">
   </head>
   <body>
     <div class="container main-container">
@@ -22,6 +23,15 @@
       </div>
 
       <div id="init-row">
+
+        <div class="row main-desc-row">
+          <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 flavor-text">
+            <h4 class="main-desc-text">
+              The easiest way to find the perfect floss palette for your next embroidery project. Just upload your reference picture and we will instantly find all the colors you'll need for your project.
+            </h4>
+          </div>
+        </div>
+
         <div class="row">
           <div class="step-box
                       col-xs-10 col-xs-offset-1
@@ -37,7 +47,7 @@
         </div>
 
         <div id="insp-row" class="row insp-first-row insp-text-row">
-          <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3 insp-text">
+          <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3 flavor-text">
             <h4>Looking for inspiration? Maybe, start with one of these!</h4>
           </div>
         </div>
@@ -45,7 +55,7 @@
         <div class="row" id="insp-images"></div>
 
         <div class="row insp-text-row">
-          <div id="showmore" class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3 insp-text">
+          <div id="showmore" class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3 flavor-text">
             <span id="nolike">Don't like any of them?</span>
             <button id="nolike-btn" class="btn btn-sm btn-warning">
               <span class="glyphicon glyphicon-plus"></span>
@@ -62,7 +72,7 @@
           <form class="form-inline">
             <h3>Step 2</h3>
             <h4>How many floss colors<br>do you want to use?</h4>
-            <div id="description" class="description">
+            <div id="description" class="num-colors-description">
               <button id="description-btn" class="btn btn-sm btn-info">
                 <span class="glyphicon glyphicon-info-sign"></span>
                 Help me decide

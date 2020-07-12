@@ -25,6 +25,12 @@ body, html, .container-fluid {
 	margin-bottom: 3%;
 }
 
+.flavor-text {
+	background-color: rgba(255, 255, 255, 0.6);
+	box-shadow: 0px 0px 10px 0px #b7b7b7;
+	padding: 15px;
+}
+
 .top-spaced-cont {
 	margin-top: 5%;
 }
@@ -156,6 +162,10 @@ h3 {
 
 #num-colors {
 	vertical-align: bottom;
+}
+
+.num-colors-description {
+	line-height: 1.6;
 }
 
 #loader {
